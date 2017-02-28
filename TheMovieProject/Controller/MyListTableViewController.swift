@@ -19,12 +19,7 @@ class MyListTableViewController: UITableViewController {
     
     @IBAction func addNewList(_ sender: UIBarButtonItem) {
         
-        let alertNewList = UIAlertController(title: "New List", message: "Enter a name for this list", preferredStyle: UIAlertControllerStyle.alert)
-        alertNewList.addTextField(configurationHandler: nil)
-
-        let actionAddNewList = UIAlertAction(title: "Save", style: .default) { (action) in
-            
-            let text = ((alertNewList.textFields?.first)! as UITextField).text
+        alertNewList { (text) in
             
             let myEntity = ListEntity(context: CoreDataHelper.context)
             myEntity.leName = text
@@ -32,18 +27,11 @@ class MyListTableViewController: UITableViewController {
             
             CoreDataHelper.performListEntity(action: .save, object: nil)
         }
-        
-        let actionCancelNewList = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    
-        alertNewList.addAction(actionAddNewList)
-        alertNewList.addAction(actionCancelNewList)
-        
-        self.present(alertNewList, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         firstRun()
         
         let requestListEntity = CoreDataHelper.createRequestFetchControllerListEntity(sortKey: "leUserType", predicateFormat: nil, predicateArgsArray: nil)
@@ -61,7 +49,7 @@ class MyListTableViewController: UITableViewController {
     }
     
     private func firstRun() {
-        
+                
         if !UserDefaults.standard.bool(forKey: "firstRun?") {
             
             let listEntityOne = ListEntity(context: CoreDataHelper.context)
@@ -132,49 +120,4 @@ class MyListTableViewController: UITableViewController {
         }
         
     }
-}
-
-
-// Extension NSFetchedResultsControllerDelegate
-
-extension MyListTableViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-        tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        
-        switch type {
-        case .insert:
-            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-        case .delete:
-            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-        default: break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath:
-        IndexPath?) {
-                
-        switch type {
-        case .insert:
-            if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .fade)
-            }
-        case .delete:
-            if let indexPath = indexPath {
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        default: break
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-        tableView.endUpdates()
-    }
-    
-    
 }

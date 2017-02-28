@@ -10,6 +10,8 @@
 		0100E92A1E4C2A4F00A87086 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0100E9291E4C2A4F00A87086 /* Search.storyboard */; };
 		0100E92C1E4C2AA100A87086 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100E92B1E4C2AA100A87086 /* SearchTableViewController.swift */; };
 		0100E92E1E4C2C6400A87086 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0100E92D1E4C2C6400A87086 /* SearchTableViewCell.swift */; };
+		010FE6EB1E660809002546AE /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010FE6EA1E660809002546AE /* UIViewController+Extension.swift */; };
+		010FE6ED1E660DCC002546AE /* MyListTableViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010FE6EC1E660DCC002546AE /* MyListTableViewController+Extension.swift */; };
 		011C8CA51E5D093900B20E8B /* TMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011C8CA41E5D093900B20E8B /* TMDbAPI.swift */; };
 		011C8CAB1E5D0A8B00B20E8B /* TMPModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 011C8CA91E5D0A8B00B20E8B /* TMPModel.xcdatamodeld */; };
 		011C8CAE1E5D0E6F00B20E8B /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011C8CAD1E5D0E6F00B20E8B /* CoreDataHelper.swift */; };
@@ -24,7 +26,6 @@
 		014BDC2E1E3317AE00E98F13 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 014BDC2D1E3317AE00E98F13 /* Settings.storyboard */; };
 		0158A9391E2EE55E0097FA70 /* TopListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158A9381E2EE55E0097FA70 /* TopListCollectionViewController.swift */; };
 		0158A93D1E2EE9F30097FA70 /* TopListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158A93C1E2EE9F30097FA70 /* TopListCollectionViewCell.swift */; };
-		01C049481E64ED32004649B8 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C049471E64ED32004649B8 /* AlertHelper.swift */; };
 		01D2A2D71E417029006568CC /* TopListsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2A2D61E417029006568CC /* TopListsModel.swift */; };
 		01DF16761E3A61D900E600C1 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF16751E3A61D900E600C1 /* GenreCollectionViewCell.swift */; };
 		01DF16781E3A64F600E600C1 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DF16771E3A64F600E600C1 /* Discover.storyboard */; };
@@ -34,6 +35,8 @@
 		0100E9291E4C2A4F00A87086 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Search.storyboard; path = View/Search.storyboard; sourceTree = "<group>"; };
 		0100E92B1E4C2AA100A87086 /* SearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTableViewController.swift; path = Controller/SearchTableViewController.swift; sourceTree = "<group>"; };
 		0100E92D1E4C2C6400A87086 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchTableViewCell.swift; path = View/SearchTableViewCell.swift; sourceTree = "<group>"; };
+		010FE6EA1E660809002546AE /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "Extension/UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		010FE6EC1E660DCC002546AE /* MyListTableViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MyListTableViewController+Extension.swift"; path = "Extension/MyListTableViewController+Extension.swift"; sourceTree = "<group>"; };
 		011C8CA41E5D093900B20E8B /* TMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TMDbAPI.swift; path = Network/TMDbAPI.swift; sourceTree = "<group>"; };
 		011C8CAA1E5D0A8B00B20E8B /* TMPModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TMPModel.xcdatamodel; sourceTree = "<group>"; };
 		011C8CAD1E5D0E6F00B20E8B /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Helper/CoreDataHelper.swift; sourceTree = "<group>"; };
@@ -50,7 +53,6 @@
 		014BDC2D1E3317AE00E98F13 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = View/Settings.storyboard; sourceTree = "<group>"; };
 		0158A9381E2EE55E0097FA70 /* TopListCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopListCollectionViewController.swift; path = Controller/TopListCollectionViewController.swift; sourceTree = "<group>"; };
 		0158A93C1E2EE9F30097FA70 /* TopListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopListCollectionViewCell.swift; path = View/TopListCollectionViewCell.swift; sourceTree = "<group>"; };
-		01C049471E64ED32004649B8 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertHelper.swift; path = Helper/AlertHelper.swift; sourceTree = "<group>"; };
 		01D2A2D61E417029006568CC /* TopListsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopListsModel.swift; path = Model/TopListsModel.swift; sourceTree = "<group>"; };
 		01DF16751E3A61D900E600C1 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenreCollectionViewCell.swift; path = View/GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		01DF16771E3A64F600E600C1 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Discover.storyboard; path = View/Discover.storyboard; sourceTree = "<group>"; };
@@ -67,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010FE6E91E6607D4002546AE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				010FE6EA1E660809002546AE /* UIViewController+Extension.swift */,
+				010FE6EC1E660DCC002546AE /* MyListTableViewController+Extension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		011C8CA31E5D08D900B20E8B /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				011C8CAD1E5D0E6F00B20E8B /* CoreDataHelper.swift */,
-				01C049471E64ED32004649B8 /* AlertHelper.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -150,6 +160,7 @@
 		014412A71E2B05EA00D42DEF /* TheMovieProject */ = {
 			isa = PBXGroup;
 			children = (
+				010FE6E91E6607D4002546AE /* Extension */,
 				011C8CAC1E5D0E3D00B20E8B /* Helper */,
 				011C8CA31E5D08D900B20E8B /* Network */,
 				013E6BBE1E2B0B2F0055F7D3 /* Model */,
@@ -239,9 +250,10 @@
 			files = (
 				01DF16761E3A61D900E600C1 /* GenreCollectionViewCell.swift in Sources */,
 				014BDC2C1E33156900E98F13 /* GenreCollectionViewController.swift in Sources */,
+				010FE6ED1E660DCC002546AE /* MyListTableViewController+Extension.swift in Sources */,
 				011C8CA51E5D093900B20E8B /* TMDbAPI.swift in Sources */,
+				010FE6EB1E660809002546AE /* UIViewController+Extension.swift in Sources */,
 				014412A91E2B05EA00D42DEF /* AppDelegate.swift in Sources */,
-				01C049481E64ED32004649B8 /* AlertHelper.swift in Sources */,
 				0158A9391E2EE55E0097FA70 /* TopListCollectionViewController.swift in Sources */,
 				0158A93D1E2EE9F30097FA70 /* TopListCollectionViewCell.swift in Sources */,
 				013140431E47E39F00FA32D9 /* MyListTableViewController.swift in Sources */,
