@@ -28,7 +28,7 @@ class MyListTableViewController: UITableViewController {
             
             let myEntity = ListEntity(context: CoreDataHelper.context)
             myEntity.leName = text
-            myEntity.leType = "1"
+            myEntity.leUserType = true
             
             CoreDataHelper.performListEntity(action: .save, object: nil)
         }
@@ -44,15 +44,11 @@ class MyListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myEntity = ListEntity(context: CoreDataHelper.context)
-        myEntity.leName = "To Watch"
-        myEntity.leType = "0"
+        firstRun()
         
-        CoreDataHelper.performListEntity(action: .save, object: nil)
-
-        let requestListEntity = CoreDataHelper.createRequestFetchControllerListEntity(sortKey: "leType", predicateFormat: nil, predicateArgsArray: nil)
+        let requestListEntity = CoreDataHelper.createRequestFetchControllerListEntity(sortKey: "leUserType", predicateFormat: nil, predicateArgsArray: nil)
         
-        controllerListEntity = NSFetchedResultsController(fetchRequest: requestListEntity, managedObjectContext: CoreDataHelper.context, sectionNameKeyPath: "leType", cacheName: nil)
+        controllerListEntity = NSFetchedResultsController(fetchRequest: requestListEntity, managedObjectContext: CoreDataHelper.context, sectionNameKeyPath: "leUserType", cacheName: nil)
         
         do {
             
@@ -64,9 +60,31 @@ class MyListTableViewController: UITableViewController {
         }
     }
     
+    private func firstRun() {
+        
+        if !UserDefaults.standard.bool(forKey: "firstRun?") {
+            
+            let listEntityOne = ListEntity(context: CoreDataHelper.context)
+            listEntityOne.leName = "To Watch"
+            listEntityOne.leUserType = false
+            
+            let listEntityTwo = ListEntity(context: CoreDataHelper.context)
+            listEntityTwo.leName = "Watched"
+            listEntityTwo.leUserType = false
+            
+            CoreDataHelper.performListEntity(action: .save, object: nil)
+
+            UserDefaults.standard.set(true, forKey: "firstRun?")
+        }
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 2
+        if let sections = controllerListEntity.sections {
+            return sections.count
+        } else {
+            return 0
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,8 +99,9 @@ class MyListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCustomCell", for: indexPath)
-
+        
         let object = controllerListEntity.object(at: indexPath)
+        
         cell.textLabel?.text = object.leName
 
         return cell
@@ -125,26 +144,30 @@ extension MyListTableViewController: NSFetchedResultsControllerDelegate {
         tableView.beginUpdates()
     }
     
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default: break
+        }
+    }
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath:
         IndexPath?) {
                 
         switch type {
-            
         case .insert:
-            
             if let newIndexPath = newIndexPath {
                 tableView.insertRows(at: [newIndexPath], with: .fade)
             }
-            
         case .delete:
-            
             if let indexPath = indexPath {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-            
-        default:
-            
-            tableView.reloadData()
+        default: break
         }
     }
     
