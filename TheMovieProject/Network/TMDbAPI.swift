@@ -17,17 +17,6 @@ enum MethodURL: String {
 
 class TMDbAPI {
     
-    class func fetchDataFromSearchMovieBy() {
-        
-        let request = URLRequest(url: URL(string: MethodURL.URLTest.rawValue)!)
-        let session = URLSession()
-        
-        session.dataTask(with: request) { (data, response, error) in
-            
-            print(response)
-            
-        }
-        
-    }
+    
     
 }
