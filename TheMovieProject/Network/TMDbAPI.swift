@@ -17,6 +17,11 @@ enum MethodURL: String {
 
 class TMDbAPI {
     
+    class func getGenreMovieList() {
+        
+        NetworkHelper.request(url: <#T##String#>, method: <#T##HttpMethod#>)
+        
+    }
     
     
 }

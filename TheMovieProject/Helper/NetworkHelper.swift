@@ -14,12 +14,27 @@ enum HttpMethod: String {
 
 class NetworkHelper {
     
-    class func request(url: String, method: HttpMethod) {
+    class func request(url: String, method: HttpMethod, parameters: [String:String]) {
+        
+        var myURL = URL(string: url)
+        
+        var myURLComponents = URLComponents()
+        myURLComponents.scheme = myURL?.scheme
+        myURLComponents.host = myURL?.host
+        myURLComponents.path = myURL?.path
+        
+        myURLComponents.
+        
+        var myParameters = URLQueryItem.init(name: <#T##String#>, value: <#T##String?#>)
+
         
         guard let myURL = URL(string: url) else { return }
         
         var myRequest = URLRequest(url: myURL)
         myRequest.httpMethod = method.rawValue
+        
+        var session = URLSession()
+        session.que
         
         URLSession.shared.dataTask(with: myRequest) { (data, response, error) in
             
