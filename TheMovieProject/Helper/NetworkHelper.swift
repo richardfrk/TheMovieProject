@@ -8,44 +8,23 @@
 
 import Foundation
 
-enum HttpMethod: String {
+enum HTTPMethod: String {
     case GET = "GET"
 }
 
 class NetworkHelper {
     
-    class func request(url: String, method: HttpMethod, parameters: [String:String]) {
+    class func request(urlMethod: URLMethod, httpMethod: HTTPMethod, parameters: [String:String], completionHandler:@escaping ([[String:Any]]) -> ()) {
         
-        var myURLComponents = URLComponents()
-        var queryItems = [URLQueryItem]()
-
-        guard let myURL = URL(string: url),
-            let urlScheme = myURL.scheme,
-            let urlHost = myURL.host else {
+        let urlComponents = URLComponents(url: urlMethod.rawValue, parameters: parameters)
+        
+        guard let newURL = urlComponents.url else {
             print("")
             return
         }
-        
-        for (key, value) in parameters {
-            
-            let queryItem = URLQueryItem(name: key, value: value)
-            queryItems.append(queryItem)
-        }
-        
-        myURLComponents.scheme = urlScheme
-        myURLComponents.host = urlHost
-        myURLComponents.path = myURL.path
-        myURLComponents.queryItems = queryItems
-        
-        guard let newURL = myURLComponents.url else {
-            print("")
-            return
-        }
-        
-        print(newURL)
         
         var myRequest = URLRequest(url: newURL)
-        myRequest.httpMethod = method.rawValue
+        myRequest.httpMethod = httpMethod.rawValue
         
         URLSession.shared.dataTask(with: myRequest) { (data, response, error) in
             
@@ -64,6 +43,13 @@ class NetworkHelper {
                 print("")
                 return
             }
+            
+            guard let dic = JSONHelper(result).dictionary else {
+                print("")
+                return
+            }
+            
+            completionHandler(dic)
             
         }.resume()
     }

@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum MethodURL: String {
+enum URLMethod: String {
     
     case searchMovie = "https://api.themoviedb.org/3/search/movie"
     case movieDetail = "https://api.themoviedb.org/3/movie/"
-    case URLTest = "https://api.themoviedb.org/3/search/movie?api_key=280e4dd3ac750ddf0bb4ec7d576c215a&language=en-US&query=Batman&page=1&include_adult=false"
+    case genreListMovie = "https://api.themoviedb.org/3/genre/movie/list"
 }
 
 class TMDbAPI {
@@ -20,16 +20,13 @@ class TMDbAPI {
     class func getGenreMovieList() {
         
         let myParameters = [
-        "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a&language",
+        "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a",
         "language":"en-US",
-        "query":"Batman",
-        "page":"1",
-        "include_adult":"false"
         ]
         
-        NetworkHelper.request(url: "https://api.themoviedb.org/3/search/movie", method: .GET, parameters: myParameters)
-        
+        NetworkHelper.request(urlMethod: .genreListMovie, httpMethod: .GET, parameters: myParameters) { (result) in
+            
+            print(result[0]["id"])
+        }
     }
-    
-    
 }

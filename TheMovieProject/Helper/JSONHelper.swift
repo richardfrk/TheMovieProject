@@ -8,29 +8,20 @@
 
 import Foundation
 
-class JSONHelper {
+struct JSONHelper {
     
-//    class func parseJSON(data: Data) -> [[String:Any]] {
-//        
-//        var genres = [[:]]
-//        
-//        do {
-//            
-//            let json = try JSONSerialization.jsonObject(with: data, options: [])
-//            
-//            guard let dictionary = json as? [String:Any] else {
-//                return nil
-//            }
-//            
-//            guard genres = dictionary["genres"] as? [[String:Any]] else {
-//                print("")
-//                return nil
-//            }
-//            
-//        } catch {
-//            print("")
-//        }
-//        
-//        return nil
-//    }
+    var dictionary: [[String:Any]]?
+
+    init(_ data: Data) {
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
+            
+            let dic = json["genres"] as! [[String:Any]]
+            self.dictionary = dic
+            
+        } catch {
+            print("")
+        }
+    }
 }
