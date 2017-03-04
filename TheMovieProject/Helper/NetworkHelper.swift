@@ -16,25 +16,36 @@ class NetworkHelper {
     
     class func request(url: String, method: HttpMethod, parameters: [String:String]) {
         
-        var myURL = URL(string: url)
-        
         var myURLComponents = URLComponents()
-        myURLComponents.scheme = myURL?.scheme
-        myURLComponents.host = myURL?.host
-        myURLComponents.path = myURL?.path
-        
-        myURLComponents.
-        
-        var myParameters = URLQueryItem.init(name: <#T##String#>, value: <#T##String?#>)
+        var queryItems = [URLQueryItem]()
 
+        guard let myURL = URL(string: url),
+            let urlScheme = myURL.scheme,
+            let urlHost = myURL.host else {
+            print("")
+            return
+        }
         
-        guard let myURL = URL(string: url) else { return }
+        for (key, value) in parameters {
+            
+            let queryItem = URLQueryItem(name: key, value: value)
+            queryItems.append(queryItem)
+        }
         
-        var myRequest = URLRequest(url: myURL)
+        myURLComponents.scheme = urlScheme
+        myURLComponents.host = urlHost
+        myURLComponents.path = myURL.path
+        myURLComponents.queryItems = queryItems
+        
+        guard let newURL = myURLComponents.url else {
+            print("")
+            return
+        }
+        
+        print(newURL)
+        
+        var myRequest = URLRequest(url: newURL)
         myRequest.httpMethod = method.rawValue
-        
-        var session = URLSession()
-        session.que
         
         URLSession.shared.dataTask(with: myRequest) { (data, response, error) in
             
@@ -53,9 +64,6 @@ class NetworkHelper {
                 print("")
                 return
             }
-            
-            JSONHelper(data: result)
-            
             
         }.resume()
     }

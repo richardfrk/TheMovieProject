@@ -19,7 +19,7 @@ class TopListCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NetworkHelper.request(url: "https://api.themoviedb.org/3/genre/movie/list?api_key=280e4dd3ac750ddf0bb4ec7d576c215a&language=en-US", method: .GET)
+        TMDbAPI.getGenreMovieList()
         
         //dataSource.append(TopListsModel(title: "One Title", likes: "234", coverURL: nil))
         //dataSource.append(TopListsModel(title: "Two Title", likes: "124", coverURL: nil))

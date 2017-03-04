@@ -26,6 +26,7 @@
 		014BDC2E1E3317AE00E98F13 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 014BDC2D1E3317AE00E98F13 /* Settings.storyboard */; };
 		0158A9391E2EE55E0097FA70 /* TopListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158A9381E2EE55E0097FA70 /* TopListCollectionViewController.swift */; };
 		0158A93D1E2EE9F30097FA70 /* TopListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0158A93C1E2EE9F30097FA70 /* TopListCollectionViewCell.swift */; };
+		016B74771E6A483500FC406D /* URLComponents+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016B74761E6A483500FC406D /* URLComponents+Extension.swift */; };
 		01B45D801E679C6900254D23 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B45D7F1E679C6900254D23 /* JSONHelper.swift */; };
 		01BB7D7C1E6763E700DF2105 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BB7D7B1E6763E700DF2105 /* NetworkHelper.swift */; };
 		01D2A2D71E417029006568CC /* TopListsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2A2D61E417029006568CC /* TopListsModel.swift */; };
@@ -55,6 +56,7 @@
 		014BDC2D1E3317AE00E98F13 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = View/Settings.storyboard; sourceTree = "<group>"; };
 		0158A9381E2EE55E0097FA70 /* TopListCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopListCollectionViewController.swift; path = Controller/TopListCollectionViewController.swift; sourceTree = "<group>"; };
 		0158A93C1E2EE9F30097FA70 /* TopListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopListCollectionViewCell.swift; path = View/TopListCollectionViewCell.swift; sourceTree = "<group>"; };
+		016B74761E6A483500FC406D /* URLComponents+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "URLComponents+Extension.swift"; path = "Extension/URLComponents+Extension.swift"; sourceTree = "<group>"; };
 		01B45D7F1E679C6900254D23 /* JSONHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONHelper.swift; path = Helper/JSONHelper.swift; sourceTree = "<group>"; };
 		01BB7D7B1E6763E700DF2105 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkHelper.swift; path = Helper/NetworkHelper.swift; sourceTree = "<group>"; };
 		01D2A2D61E417029006568CC /* TopListsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopListsModel.swift; path = Model/TopListsModel.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				010FE6EA1E660809002546AE /* UIViewController+Extension.swift */,
 				010FE6EC1E660DCC002546AE /* MyListTableViewController+Extension.swift */,
+				016B74761E6A483500FC406D /* URLComponents+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				011C8CAB1E5D0A8B00B20E8B /* TMPModel.xcdatamodeld in Sources */,
 				011C8CAE1E5D0E6F00B20E8B /* CoreDataHelper.swift in Sources */,
 				0100E92C1E4C2AA100A87086 /* SearchTableViewController.swift in Sources */,
+				016B74771E6A483500FC406D /* URLComponents+Extension.swift in Sources */,
 				0100E92E1E4C2C6400A87086 /* SearchTableViewCell.swift in Sources */,
 				014BDC281E330ED400E98F13 /* DiscoverViewController.swift in Sources */,
 				01D2A2D71E417029006568CC /* TopListsModel.swift in Sources */,

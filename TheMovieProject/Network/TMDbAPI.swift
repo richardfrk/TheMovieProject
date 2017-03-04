@@ -19,7 +19,15 @@ class TMDbAPI {
     
     class func getGenreMovieList() {
         
-        NetworkHelper.request(url: <#T##String#>, method: <#T##HttpMethod#>)
+        let myParameters = [
+        "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a&language",
+        "language":"en-US",
+        "query":"Batman",
+        "page":"1",
+        "include_adult":"false"
+        ]
+        
+        NetworkHelper.request(url: "https://api.themoviedb.org/3/search/movie", method: .GET, parameters: myParameters)
         
     }
     
