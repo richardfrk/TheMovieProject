@@ -39,12 +39,12 @@ class NetworkHelper {
                 return
             }
             
-            guard let result = data else {
+            guard let data = data else {
                 print("")
                 return
             }
             
-            guard let dic = JSONHelper(result).dictionary else {
+            guard let dic = JSONHelper(data: data, urlMethod: urlMethod).dictionary else {
                 print("")
                 return
             }

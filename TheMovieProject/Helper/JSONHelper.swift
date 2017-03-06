@@ -8,17 +8,36 @@
 
 import Foundation
 
+enum APIMethod: String {
+    case genreList = "genres"
+    case searchMovie = "results"
+}
+
 struct JSONHelper {
     
     var dictionary: [[String:Any]]?
 
-    init(_ data: Data) {
+    init(data: Data, urlMethod: URLMethod) {
         
         do {
+            
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
             
-            let dic = json["genres"] as! [[String:Any]]
-            self.dictionary = dic
+            switch urlMethod {
+            
+            case .genreListMovie:
+                
+                let dic = json["genres"] as! [[String:Any]]
+                self.dictionary = dic
+                
+            case .searchMovie:
+                
+                let dic = json["results"] as! [[String:Any]]
+                self.dictionary = dic
+            
+            default:
+                break
+            }
             
         } catch {
             print("")
