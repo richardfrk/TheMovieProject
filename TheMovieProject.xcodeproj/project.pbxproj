@@ -15,6 +15,8 @@
 		011C8CA51E5D093900B20E8B /* TMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011C8CA41E5D093900B20E8B /* TMDbAPI.swift */; };
 		011C8CAB1E5D0A8B00B20E8B /* TMPModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 011C8CA91E5D0A8B00B20E8B /* TMPModel.xcdatamodeld */; };
 		011C8CAE1E5D0E6F00B20E8B /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011C8CAD1E5D0E6F00B20E8B /* CoreDataHelper.swift */; };
+		011FE8D51E6E5A3A00A66670 /* CacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011FE8D41E6E5A3A00A66670 /* CacheHelper.swift */; };
+		011FE8D71E6E5B1F00A66670 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011FE8D61E6E5B1F00A66670 /* UIImage+Extension.swift */; };
 		013140411E47E34100FA32D9 /* MyList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 013140401E47E34100FA32D9 /* MyList.storyboard */; };
 		013140431E47E39F00FA32D9 /* MyListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013140421E47E39F00FA32D9 /* MyListTableViewController.swift */; };
 		014412A91E2B05EA00D42DEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014412A81E2B05EA00D42DEF /* AppDelegate.swift */; };
@@ -43,6 +45,8 @@
 		011C8CA41E5D093900B20E8B /* TMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TMDbAPI.swift; path = Network/TMDbAPI.swift; sourceTree = "<group>"; };
 		011C8CAA1E5D0A8B00B20E8B /* TMPModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TMPModel.xcdatamodel; sourceTree = "<group>"; };
 		011C8CAD1E5D0E6F00B20E8B /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Helper/CoreDataHelper.swift; sourceTree = "<group>"; };
+		011FE8D41E6E5A3A00A66670 /* CacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheHelper.swift; path = Helper/CacheHelper.swift; sourceTree = "<group>"; };
+		011FE8D61E6E5B1F00A66670 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Extension/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		013140401E47E34100FA32D9 /* MyList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MyList.storyboard; path = View/MyList.storyboard; sourceTree = "<group>"; };
 		013140421E47E39F00FA32D9 /* MyListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyListTableViewController.swift; path = Controller/MyListTableViewController.swift; sourceTree = "<group>"; };
 		014412A51E2B05EA00D42DEF /* TheMovieProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMovieProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +85,7 @@
 				010FE6EA1E660809002546AE /* UIViewController+Extension.swift */,
 				010FE6EC1E660DCC002546AE /* MyListTableViewController+Extension.swift */,
 				016B74761E6A483500FC406D /* URLComponents+Extension.swift */,
+				011FE8D61E6E5B1F00A66670 /* UIImage+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 				011C8CAD1E5D0E6F00B20E8B /* CoreDataHelper.swift */,
 				01B45D7F1E679C6900254D23 /* JSONHelper.swift */,
 				01BB7D7B1E6763E700DF2105 /* NetworkHelper.swift */,
+				011FE8D41E6E5A3A00A66670 /* CacheHelper.swift */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 				010FE6EB1E660809002546AE /* UIViewController+Extension.swift in Sources */,
 				014412A91E2B05EA00D42DEF /* AppDelegate.swift in Sources */,
 				0158A9391E2EE55E0097FA70 /* TopListCollectionViewController.swift in Sources */,
+				011FE8D71E6E5B1F00A66670 /* UIImage+Extension.swift in Sources */,
 				0158A93D1E2EE9F30097FA70 /* TopListCollectionViewCell.swift in Sources */,
 				01BB7D7C1E6763E700DF2105 /* NetworkHelper.swift in Sources */,
 				013140431E47E39F00FA32D9 /* MyListTableViewController.swift in Sources */,
@@ -274,6 +281,7 @@
 				0100E92E1E4C2C6400A87086 /* SearchTableViewCell.swift in Sources */,
 				014BDC281E330ED400E98F13 /* DiscoverViewController.swift in Sources */,
 				01D2A2D71E417029006568CC /* TopListsModel.swift in Sources */,
+				011FE8D51E6E5A3A00A66670 /* CacheHelper.swift in Sources */,
 				01B45D801E679C6900254D23 /* JSONHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

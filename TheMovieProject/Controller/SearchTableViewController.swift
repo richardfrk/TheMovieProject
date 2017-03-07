@@ -47,6 +47,14 @@ class SearchTableViewController: UITableViewController {
             cell.textLabel?.text = originalTitle
         }
         
+        if let releaseDate = searchResults[indexPath.row]["release_date"] as? String {
+            cell.detailTextLabel?.text = releaseDate
+        }
+        
+        if let posterPath = searchResults[indexPath.row]["poster_path"] as? String {
+            cell.imageView?.image = UIImage(
+        }
+        
         return cell
     }
 
