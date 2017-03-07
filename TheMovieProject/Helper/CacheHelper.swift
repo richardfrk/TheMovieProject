@@ -10,7 +10,7 @@ import Foundation
 
 class CacheHelper {
     
-    class func downloadImageWithCache(url: String, completionHandler:@escaping (Data) -> ()) {
+    class func downloadImageWithCache(url: String, completionHandler: @escaping (Data)->()) {
         
         let url = URL(string: url)
         
@@ -29,7 +29,5 @@ class CacheHelper {
             completionHandler(data!)
             
         }.resume()
-        
-        
     }
 }

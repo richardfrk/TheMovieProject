@@ -19,6 +19,9 @@ class TopListCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var imageView = UIImageView()
+        imageView.urlDownloadWithCache(string: "https://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg")
+                
         TMDbAPI.getGenreMovieList()
         
         //dataSource.append(TopListsModel(title: "One Title", likes: "234", coverURL: nil))

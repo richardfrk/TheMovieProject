@@ -9,18 +9,13 @@
 import Foundation
 import UIKit
 
-extension UIImage {
+extension UIImageView {
     
-    convenience init(urlDownloadWithCache: String) {
+    func urlDownloadWithCache(string: String) {
         
-        var data: Data?
-        
-        CacheHelper.downloadImageWithCache(url: urlDownloadWithCache) { (data) in
+        CacheHelper.downloadImageWithCache(url: string) { (data) in
             
-            data = data
+            self.image = UIImage(data: data)
         }
-        
-        self.init(data: data!)!
     }
-    
 }

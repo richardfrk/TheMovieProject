@@ -52,7 +52,8 @@ class SearchTableViewController: UITableViewController {
         }
         
         if let posterPath = searchResults[indexPath.row]["poster_path"] as? String {
-            cell.imageView?.image = UIImage(
+            var imageView = UIImageView()
+            //cell.imageView?.image = imageView.image!
         }
         
         return cell
