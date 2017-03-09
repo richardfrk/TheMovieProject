@@ -52,8 +52,15 @@ class SearchTableViewController: UITableViewController {
         }
         
         if let posterPath = searchResults[indexPath.row]["poster_path"] as? String {
-            var imageView = UIImageView()
-            //cell.imageView?.image = imageView.image!
+            let imageView = UIImageView()
+            CacheHelper.downloadImageWithCache(url: "https://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg", completionHandler: { (data) in
+                
+                DispatchQueue.main.async {
+                    cell.imageView?.image = UIImage(data: data)
+                }
+                
+            })
+            
         }
         
         return cell

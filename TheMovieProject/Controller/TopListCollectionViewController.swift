@@ -18,18 +18,15 @@ class TopListCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+                        
+        //TMDbAPI.getGenreMovieList()
         
-        var imageView = UIImageView()
-        imageView.urlDownloadWithCache(string: "https://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg")
-                
-        TMDbAPI.getGenreMovieList()
-        
-        //dataSource.append(TopListsModel(title: "One Title", likes: "234", coverURL: nil))
-        //dataSource.append(TopListsModel(title: "Two Title", likes: "124", coverURL: nil))
-        //dataSource.append(TopListsModel(title: "Three Title", likes: "57", coverURL: nil))
-        //dataSource.append(TopListsModel(title: "One Title", likes: "234", coverURL: nil))
-        //dataSource.append(TopListsModel(title: "Two Title", likes: "124", coverURL: nil))
-        //dataSource.append(TopListsModel(title: "Three Title", likes: "57", coverURL: nil))
+        dataSource.append(TopListsModel(name: "One Title", likes: "234", coverURL: nil))
+        dataSource.append(TopListsModel(name: "Two Title", likes: "124", coverURL: nil))
+        dataSource.append(TopListsModel(name: "Three Title", likes: "57", coverURL: nil))
+        dataSource.append(TopListsModel(name: "One Title", likes: "234", coverURL: nil))
+        dataSource.append(TopListsModel(name: "Two Title", likes: "124", coverURL: nil))
+        dataSource.append(TopListsModel(name: "Three Title", likes: "57", coverURL: nil))
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -43,11 +40,6 @@ class TopListCollectionViewController: UICollectionViewController {
         cell.titleListLabel.text = dataSource[indexPath.item].name ?? nil
         cell.numberLikeListLabel.text = dataSource[indexPath.item].likes ?? nil
         
-        print(dataSource[indexPath.item].coverURL!)
-    
-        let url = URL(string: "https://image.tmdb.org/t/p/original/coJVIUEOToAEGViuhclM7pXC75R.jpg")!
-        //cell.coverListView.kf.setImage(with: url)
-                
         return cell
     }
 

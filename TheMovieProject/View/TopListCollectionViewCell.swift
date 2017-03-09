@@ -13,6 +13,5 @@ class TopListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleListLabel: UILabel!
     @IBOutlet weak var likeListButton: UIButton!
     @IBOutlet weak var numberLikeListLabel: UILabel!
-    @IBOutlet weak var coverListView: UIImageView!
         
 }
