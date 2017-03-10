@@ -19,7 +19,7 @@ class TopListCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                         
-        //TMDbAPI.getGenreMovieList()
+        TMDbAPI.getGenreMovieList()
         
         dataSource.append(TopListsModel(name: "One Title", likes: "234", coverURL: nil))
         dataSource.append(TopListsModel(name: "Two Title", likes: "124", coverURL: nil))
@@ -36,10 +36,7 @@ class TopListCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TopListCollectionViewCell
-        
-        cell.titleListLabel.text = dataSource[indexPath.item].name ?? nil
-        cell.numberLikeListLabel.text = dataSource[indexPath.item].likes ?? nil
-        
+                
         return cell
     }
 

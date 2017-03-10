@@ -41,29 +41,36 @@ class SearchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MySearchCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MySearchCell", for: indexPath) as! SearchTableViewCell
         
         if let originalTitle = searchResults[indexPath.row]["original_title"] as? String {
-            cell.textLabel?.text = originalTitle
+            cell.searchTitleLabel.text = originalTitle
         }
         
         if let releaseDate = searchResults[indexPath.row]["release_date"] as? String {
-            cell.detailTextLabel?.text = releaseDate
+            cell.searchYearLabel.text = releaseDate
         }
         
         if let posterPath = searchResults[indexPath.row]["poster_path"] as? String {
-            let imageView = UIImageView()
-            CacheHelper.downloadImageWithCache(url: "https://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg", completionHandler: { (data) in
+
+            CacheHelper.downloadImageWithCache(url: "https://image.tmdb.org/t/p/w185\(posterPath)", completionHandler: { (data) in
                 
                 DispatchQueue.main.async {
-                    cell.imageView?.image = UIImage(data: data)
+                    cell.searchPosterImage.image = UIImage(data: data)
                 }
-                
+        
             })
-            
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var view = UITableViewController(style: .grouped)
+        
+        present(view, animated: true, completion: nil)
+        
     }
 
 }
@@ -82,10 +89,11 @@ extension SearchTableViewController: UISearchBarDelegate {
             self.searchResults = dic
         }
     }
+
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        printAlert("")
+        searchBar.text = "Teste"
         searchResults.removeAll()
         tableView.reloadData()
     }
