@@ -1,62 +1,73 @@
-//: Playground - noun: a place where people can play
 
 import UIKit
 import Foundation
 import PlaygroundSupport
 
-PlaygroundPage.current.needsIndefiniteExecution = true
-
-class CacheHelper {
+class MovieTableViewController : UITableViewController {
     
-    class func downloadImageWithCache(url: String, completionHandler: @escaping (Data)->()) {
-        
-        guard let url = URL(string: url) else {
-            print("URL Problems...")
-            return
-        }
-        
-        let memoCapacity = 10 * 1024 * 1024
-        let diskCapacity = 10 * 1024 * 1024
-        
-        let cache = URLCache(memoryCapacity: memoCapacity, diskCapacity: diskCapacity, diskPath: "CachedImage")
-        
-        let configuration = URLSessionConfiguration.default
-        configuration.urlCache = cache
-        
-        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60.0)
-        
-        let session = URLSession(configuration: configuration)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            
-            print("Data \(data)")
-            
-            guard let data = data else {
-                print("Algo")
-                return
-            }
-            
-            completionHandler(data)
-            
-            }.resume()
-    }
-}
-
-class ViewController: UIViewController {
+    var dataSource = [
+    ["title":"Richard"],
+    ["director":"Frank"],
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CacheHelper.downloadImageWithCache(url: "https://image.tmdb.org/t/p/w185/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg") { (data) in
-            
-            self.view.addSubview(UIImageView(image: UIImage(data: data)))
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MovieCell")
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return dataSource.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return dataSource[section].count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if section == 0 {
+            return "Movie"
+        } else {
+            return "Cast"
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            return 100.0
+        } else {
+            return 44.0
         }
         
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
+        
+        switch indexPath.section {
+        case 0:
+        
+            cell.textLabel?.text = dataSource[indexPath.section]["title"]
+
+        case 1:
+            
+            cell.textLabel?.text = dataSource[indexPath.section]["director"]
+
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("Richard")
+    }
 }
 
-PlaygroundPage.current.liveView = ViewController()
-
-
-
-
+PlaygroundPage.current.liveView = MovieTableViewController()
