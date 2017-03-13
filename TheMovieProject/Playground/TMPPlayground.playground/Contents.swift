@@ -6,14 +6,26 @@ import PlaygroundSupport
 class MovieTableViewController : UITableViewController {
     
     var dataSource = [
-    ["title":"Richard"],
-    ["director":"Frank"],
-    ]
+    ["title":"The Lego Batman Movie"],
+    ["posterPath":"/1pHOqpdCYNmtRVJs6pGKQKttrPm.jpg"],
+    ["genres":"Fantasy, Action"],
+    ["releaseDate":"2017-02-08"],
+    ["runtime":"104"],
+    ["runtime":"104"],
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView = UITableView(frame: self.tableView.frame, style: .grouped)
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MovieCell")
+        
+        print(UIScreen.main.bounds.width)
+        
+        //self.tableView.contentInset = UIEdgeInsetsMake(-57, 0, 0, 0)
+
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,7 +49,7 @@ class MovieTableViewController : UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.section == 0 {
-            return 100.0
+            return 640.0
         } else {
             return 44.0
         }

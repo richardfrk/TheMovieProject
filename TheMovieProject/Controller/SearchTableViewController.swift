@@ -66,11 +66,7 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        var view = UITableViewController(style: .grouped)
-        
-        present(view, animated: true, completion: nil)
-        
+                
     }
 
 }
