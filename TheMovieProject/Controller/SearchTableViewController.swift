@@ -51,22 +51,26 @@ class SearchTableViewController: UITableViewController {
             cell.searchYearLabel.text = releaseDate
         }
         
-        if let posterPath = searchResults[indexPath.row]["poster_path"] as? String {
-
-            CacheHelper.downloadImageWithCache(url: "https://image.tmdb.org/t/p/w185\(posterPath)", completionHandler: { (data) in
+        DispatchQueue.global().async {
+            
+            if let posterPath = self.searchResults[indexPath.row]["poster_path"] as? String {
                 
-                DispatchQueue.main.async {
-                    cell.searchPosterImage.image = UIImage(data: data)
-                }
-        
-            })
+                CacheHelper.downloadImageWithCache(url: "https://image.tmdb.org/t/p/w185\(posterPath)", completionHandler: { (data) in
+                    
+                    DispatchQueue.main.async {
+                        cell.searchPosterImage.image = UIImage(data: data)
+                    }
+                    
+                })
+            }
+            
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                
+        
     }
 
 }
