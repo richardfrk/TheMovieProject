@@ -25,9 +25,8 @@ class TMDbAPI {
         "language":"en-US",
         ]
         
-        NetworkHelper.request(urlMethod: .genreListMovie, httpMethod: .GET, parameters: myParameters) { (result) in
+        NetworkHelper.request(urlMethod: .genreListMovie, networkMethod: .GET, parameters: myParameters) { (result) in
             
-            print(result[0]["id"])
         }
     }
     
@@ -41,9 +40,8 @@ class TMDbAPI {
             "include_adult":"false"
             ]
         
-        NetworkHelper.request(urlMethod: .searchMovie, httpMethod: .GET, parameters: myParameters) { (result) in
+        NetworkHelper.request(urlMethod: .searchMovie, networkMethod: .GET, parameters: myParameters) { (result) in
             
-            completionHandler(result)
         }
     }
 }

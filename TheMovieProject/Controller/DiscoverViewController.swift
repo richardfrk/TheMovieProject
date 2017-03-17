@@ -15,9 +15,23 @@ class DiscoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        containerTopListView.isHidden = false
+        containerGenreView.isHidden = true
 
     }
 
     @IBAction func changedSegmentedControl(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            containerTopListView.isHidden = false
+            containerGenreView.isHidden = true
+        case 1:
+            containerTopListView.isHidden = true
+            containerGenreView.isHidden = false
+        default:
+            printAlert("Default")
+        }
     }
 }

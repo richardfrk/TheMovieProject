@@ -8,48 +8,48 @@
 
 import Foundation
 
-enum HTTPMethod: String {
+enum NetworkMethod: String {
     case GET = "GET"
+}
+
+enum NetworkResponse {
+    case success(Data)
+    case failure(Error)
 }
 
 class NetworkHelper {
     
-    class func request(urlMethod: URLMethod, httpMethod: HTTPMethod, parameters: [String:String], completionHandler:@escaping ([[String:Any]]) -> ()) {
+    class func request(urlMethod: URLMethod, networkMethod: NetworkMethod, parameters: [String:String], completionHandler:@escaping (NetworkResponse) -> ()) {
         
-        let urlComponents = URLComponents(url: urlMethod.rawValue, parameters: parameters)
+        let nwURLComponents = URLComponents(url: urlMethod.rawValue, parameters: parameters)
         
-        guard let newURL = urlComponents.url else {
-            print("")
+        guard let nwURL = nwURLComponents.url else {
+            print("Problems with nwURLComponents \(nwURLComponents)")
             return
         }
         
-        var myRequest = URLRequest(url: newURL)
-        myRequest.httpMethod = httpMethod.rawValue
+        var nwRequest = URLRequest(url: nwURL)
+        nwRequest.httpMethod = networkMethod.rawValue
         
-        URLSession.shared.dataTask(with: myRequest) { (data, response, error) in
+        URLSession.shared.dataTask(with: nwRequest) { (nwData, nwResponse, nwError) in
             
-            guard error == nil else {
-                print(error!)
+            guard nwError == nil else {
+                completionHandler(.failure(nwError!))
                 return
             }
             
-            guard let response = (response as? HTTPURLResponse),
+            guard let response = (nwResponse as? HTTPURLResponse),
                 response.statusCode == 200 else {
-                print("")
+                print("Problems with nwResponse \(nwResponse)")
                 return
             }
             
-            guard let data = data else {
-                print("")
+            guard let data = nwData else {
+                print("Problems with nwData \(nwData)")
                 return
             }
             
-            guard let dic = JSONHelper(data: data, urlMethod: urlMethod).dictionary else {
-                print("")
-                return
-            }
-            
-            completionHandler(dic)
+            completionHandler(.success(data))
             
         }.resume()
     }

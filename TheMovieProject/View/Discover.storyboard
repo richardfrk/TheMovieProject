@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E175b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zWr-rI-tVh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E183b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zWr-rI-tVh">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Discover View Controller-->
         <scene sceneID="xKe-3X-e1f">
             <objects>
-                <viewController id="bII-Lk-Nh5" sceneMemberID="viewController">
+                <viewController id="bII-Lk-Nh5" customClass="DiscoverViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vo3-je-A7K"/>
                         <viewControllerLayoutGuide type="bottom" id="dYn-G0-xzm"/>
@@ -21,15 +21,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nee-WX-9Gu">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nee-WX-9Gu" userLabel="GenreViewContainer">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="4j9-fh-lID" kind="embed" id="YQk-ue-Kan"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cu3-yl-vdI" userLabel="TopListViewContainer">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <connections>
+                                    <segue destination="gTr-o7-Yuy" kind="embed" id="3pm-px-MFA"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cu3-yl-vdI" firstAttribute="top" secondItem="nee-WX-9Gu" secondAttribute="top" id="2c3-SP-7q3"/>
+                            <constraint firstItem="cu3-yl-vdI" firstAttribute="bottom" secondItem="nee-WX-9Gu" secondAttribute="bottom" id="8pr-uo-uUs"/>
+                            <constraint firstAttribute="trailing" secondItem="nee-WX-9Gu" secondAttribute="trailing" id="9Hb-D4-IOp"/>
+                            <constraint firstAttribute="bottom" secondItem="nee-WX-9Gu" secondAttribute="bottom" id="KIV-jT-VG6"/>
+                            <constraint firstItem="cu3-yl-vdI" firstAttribute="leading" secondItem="nee-WX-9Gu" secondAttribute="leading" id="SQy-Hj-T7W"/>
+                            <constraint firstItem="nee-WX-9Gu" firstAttribute="top" secondItem="VNb-69-Enb" secondAttribute="top" id="dM9-kl-2LK"/>
+                            <constraint firstItem="cu3-yl-vdI" firstAttribute="trailing" secondItem="nee-WX-9Gu" secondAttribute="trailing" id="ejh-fR-zNG"/>
+                            <constraint firstItem="nee-WX-9Gu" firstAttribute="leading" secondItem="VNb-69-Enb" secondAttribute="leading" id="vmI-zi-B5W"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="z7k-rt-Ath">
                         <nil key="title"/>
@@ -42,8 +57,15 @@
                                 <segment title="In Theaters"/>
                                 <segment title="Upcoming"/>
                             </segments>
+                            <connections>
+                                <action selector="changedSegmentedControl:" destination="bII-Lk-Nh5" eventType="valueChanged" id="0wg-8D-8k1"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
+                    <connections>
+                        <outlet property="containerGenreView" destination="nee-WX-9Gu" id="IWH-aB-iO4"/>
+                        <outlet property="containerTopListView" destination="cu3-yl-vdI" id="VRM-NY-42f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wUn-j0-eIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,7 +75,7 @@
         <scene sceneID="5BW-PS-PuO">
             <objects>
                 <collectionViewController id="4j9-fh-lID" customClass="TopListCollectionViewController" customModule="TheMovieProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="WP0-7c-qjy">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="WP0-7c-qjy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,7 +122,41 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8Q-3f-NB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2043.75" y="-825"/>
+            <point key="canvasLocation" x="2108" y="-824"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="quG-sg-FCQ">
+            <objects>
+                <collectionViewController id="gTr-o7-Yuy" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Xgv-Dh-AVA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="evo-DR-zWV">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jmd-GN-Uhr" customClass="GenreCollectionViewCell" customModule="TheMovieProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="gTr-o7-Yuy" id="zkO-KE-IMu"/>
+                            <outlet property="delegate" destination="gTr-o7-Yuy" id="v41-Ni-u14"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R1a-B5-aeq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1299" y="-45"/>
         </scene>
         <!--Discover-->
         <scene sceneID="2DI-Ik-gy6">
