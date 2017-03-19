@@ -124,11 +124,11 @@
 		013E6BBC1E2B0AFC0055F7D3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				014BDC271E330ED400E98F13 /* DiscoverViewController.swift */,
+				0158A9381E2EE55E0097FA70 /* TopListCollectionViewController.swift */,
+				014BDC2B1E33156900E98F13 /* GenreCollectionViewController.swift */,
 				0100E92B1E4C2AA100A87086 /* SearchTableViewController.swift */,
 				013140421E47E39F00FA32D9 /* MyListTableViewController.swift */,
-				0158A9381E2EE55E0097FA70 /* TopListCollectionViewController.swift */,
-				014BDC271E330ED400E98F13 /* DiscoverViewController.swift */,
-				014BDC2B1E33156900E98F13 /* GenreCollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

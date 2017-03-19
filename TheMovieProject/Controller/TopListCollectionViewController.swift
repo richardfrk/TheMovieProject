@@ -35,7 +35,8 @@ class TopListCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! TopListCollectionViewCell
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopListCell", for: indexPath) as! TopListCollectionViewCell
                 
         return cell
     }
