@@ -27,6 +27,8 @@ class TMDbAPI {
         
         NetworkHelper.request(urlMethod: .genreListMovie, networkMethod: .GET, parameters: myParameters) { (result) in
             
+            print(result)
+                        
         }
     }
     
