@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TopListCollectionViewController: UICollectionViewController {
     
     var dataSource = [TopListsModel]() {
@@ -20,6 +21,13 @@ class TopListCollectionViewController: UICollectionViewController {
         super.viewDidLoad()
                         
         TMDbAPI.getGenreMovieList()
+        
+        FirebaseHelper.shared.reference().child("Testss").child("Teste2").child("Teste3").setValue("Brasil")
+        
+        FirebaseHelper.shared.reference().observe(.value, with: { (snapshot) in
+            
+            print(snapshot.value)
+        })
         
         dataSource.append(TopListsModel(name: "One Title", likes: "234", coverURL: nil))
         dataSource.append(TopListsModel(name: "Two Title", likes: "124", coverURL: nil))
