@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 class TopListCollectionViewController: UICollectionViewController {
@@ -19,22 +20,23 @@ class TopListCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-                        
-        TMDbAPI.getGenreMovieList()
         
-        FirebaseHelper.shared.reference().child("Testss").child("Teste2").child("Teste3").setValue("Brasil")
-        
-        FirebaseHelper.shared.reference().observe(.value, with: { (snapshot) in
+        FirebaseHelper.shared.reference().child("lists").observe(.value, with: { (snapshot) in
             
-            print(snapshot.value)
+            let value = snapshot.
+            
         })
         
-        dataSource.append(TopListsModel(name: "One Title", likes: "234", coverURL: nil))
-        dataSource.append(TopListsModel(name: "Two Title", likes: "124", coverURL: nil))
-        dataSource.append(TopListsModel(name: "Three Title", likes: "57", coverURL: nil))
-        dataSource.append(TopListsModel(name: "One Title", likes: "234", coverURL: nil))
-        dataSource.append(TopListsModel(name: "Two Title", likes: "124", coverURL: nil))
-        dataSource.append(TopListsModel(name: "Three Title", likes: "57", coverURL: nil))
+        TMDbAPI.getGenreMovieList()
+    
+        //FirebaseHelper.shared.reference().child("lists").childByAutoId().setValue(["title":"My First Title List","likes":123,"coverURL":""])
+    }
+    
+    func configureCell(cell: TopListCollectionViewCell) -> TopListCollectionViewCell {
+        
+        
+        
+        return cell
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,9 +46,9 @@ class TopListCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopListCell", for: indexPath) as! TopListCollectionViewCell
+        let topListCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopListCell", for: indexPath) as! TopListCollectionViewCell
                 
-        return cell
+        return topListCell
     }
 
 }
