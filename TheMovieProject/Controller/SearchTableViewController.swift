@@ -24,10 +24,10 @@ class SearchTableViewController: UITableViewController {
     
     private func addSearchBar() {
         
-        let mySearchBar = UISearchBar()
-        mySearchBar.placeholder = "Search"
-        mySearchBar.delegate = self
-        self.navigationItem.titleView = mySearchBar
+        let sSearchBar = UISearchBar()
+        sSearchBar.placeholder = "Search"
+        sSearchBar.delegate = self
+        self.navigationItem.titleView = sSearchBar
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -36,12 +36,13 @@ class SearchTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return searchResults.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MySearchCell", for: indexPath) as! SearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchTableViewCell
         
         if let originalTitle = searchResults[indexPath.row]["original_title"] as? String {
             cell.searchTitleLabel.text = originalTitle
@@ -84,17 +85,14 @@ extension SearchTableViewController: UISearchBarDelegate {
             return
         }
         
-        TMDbAPI.getSearchMovie(title: text) { (dic) in
+        TMDbAPI.getSearchMovie(title: text) { (dictionary) in
             
-            self.searchResults = dic
+            self.searchResults = dictionary
         }
     }
 
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        
-        searchBar.text = "Teste"
-        searchResults.removeAll()
-        tableView.reloadData()
+
     }
 }

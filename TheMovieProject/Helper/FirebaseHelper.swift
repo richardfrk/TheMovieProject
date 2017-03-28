@@ -7,21 +7,20 @@
 //
 
 import Foundation
-import Firebase
 
-class FirebaseHelper {
-    
-    static var shared: FirebaseHelper {
-        return FirebaseHelper()
-    }
-    
-    private init() {
-    
-    }
-    
-    func reference() -> FIRDatabaseReference {
-        
-        return FIRDatabase.database().reference()
-        
-    }
-}
+//class FirebaseHelper {
+//    
+//    static var shared: FirebaseHelper {
+//        return FirebaseHelper()
+//    }
+//    
+//    private init() {
+//    
+//    }
+//    
+//    func reference() -> FIRDatabaseReference {
+//        
+//        return FIRDatabase.database().reference()
+//        
+//    }
+//}

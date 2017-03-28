@@ -15,7 +15,7 @@ enum APIMethod: String {
 
 struct JSONHelper {
     
-    var dictionary: [[String:Any]]?
+    var value: [[String:Any]] = [[:]]
 
     init(data: Data, urlMethod: URLMethod) {
         
@@ -28,13 +28,13 @@ struct JSONHelper {
             case .genreListMovie:
                 
                 let dic = json["genres"] as! [[String:Any]]
-                self.dictionary = dic
+                self.value = dic
                 
             case .searchMovie:
                 
                 let dic = json["results"] as! [[String:Any]]
-                self.dictionary = dic
-            
+                self.value = dic
+                
             default:
                 break
             }

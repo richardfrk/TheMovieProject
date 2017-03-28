@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-
 
 class TopListCollectionViewController: UICollectionViewController {
     
@@ -21,11 +19,11 @@ class TopListCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseHelper.shared.reference().child("lists").observe(.value, with: { (snapshot) in
-            
-            let value = snapshot.
-            
-        })
+//        FirebaseHelper.shared.reference().child("lists").observe(.value, with: { (snapshot) in
+//            
+//            let value = snapshot.
+//            
+//        })
         
         TMDbAPI.getGenreMovieList()
     

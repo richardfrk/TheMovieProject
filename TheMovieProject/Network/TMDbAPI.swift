@@ -28,7 +28,6 @@ class TMDbAPI {
         NetworkHelper.request(urlMethod: .genreListMovie, networkMethod: .GET, parameters: myParameters) { (result) in
             
             print(result)
-                        
         }
     }
     
@@ -42,7 +41,18 @@ class TMDbAPI {
             "include_adult":"false"
             ]
         
-        NetworkHelper.request(urlMethod: .searchMovie, networkMethod: .GET, parameters: myParameters) { (result) in
+        NetworkHelper.request(urlMethod: .searchMovie, networkMethod: .GET, parameters: myParameters) { (response) in
+            
+            switch response {
+            case .success(let nhData):
+                
+                let json = JSONHelper.init(data: nhData, urlMethod: .searchMovie)
+                completionHandler(json.value)
+            
+            case .failure(let error):
+                
+                print(error)
+            }
             
         }
     }

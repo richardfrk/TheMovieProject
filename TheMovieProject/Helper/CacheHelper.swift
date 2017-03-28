@@ -31,10 +31,8 @@ class CacheHelper {
         
         session.dataTask(with: request) { (data, response, error) in
             
-            print("Data \(data)")
-            
             guard let data = data else {
-                print("Algo")
+                print("")
                 return
             }
             
