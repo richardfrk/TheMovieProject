@@ -25,8 +25,6 @@ class TopListCollectionViewController: UICollectionViewController {
 //            
 //        })
         
-        TMDbAPI.getGenreMovieList()
-    
         //FirebaseHelper.shared.reference().child("lists").childByAutoId().setValue(["title":"My First Title List","likes":123,"coverURL":""])
     }
     

@@ -17,23 +17,23 @@ struct JSONHelper {
     
     var value: [[String:Any]] = [[:]]
 
-    init(data: Data, urlMethod: URLMethod) {
+    init(data: Data, apiMethod: APIMethod) {
         
         do {
             
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
             
-            switch urlMethod {
+            switch apiMethod {
             
-            case .genreListMovie:
+            case .genreList:
                 
-                let dic = json["genres"] as! [[String:Any]]
-                self.value = dic
+                let dictionary = json["genres"] as! [[String:Any]]
+                self.value = dictionary
                 
             case .searchMovie:
                 
-                let dic = json["results"] as! [[String:Any]]
-                self.value = dic
+                let dictionary = json["results"] as! [[String:Any]]
+                self.value = dictionary
                 
             default:
                 break

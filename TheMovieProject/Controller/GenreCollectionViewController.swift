@@ -10,7 +10,7 @@ import UIKit
 
 class GenreCollectionViewController: UICollectionViewController {
     
-    var dataSource: [[String:String]] = [] {
+    var dataSource: [[String:Any]] = [] {
         didSet{
             collectionView?.reloadData()
         }
@@ -19,15 +19,9 @@ class GenreCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        dataSource.append(["name":"Richard"])
-        dataSource.append(["name":"Frank"])
-        dataSource.append(["name":"Cocco"])
-        
+        TMDbAPI.getGenreMovieList { (result) in
+            self.dataSource = result
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -40,7 +34,9 @@ class GenreCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GenreCell", for: indexPath) as! GenreCollectionViewCell
-            
+        
+        cell.titleGenreLabel.text = (dataSource[indexPath.row]["name"] as? String)?.uppercased()
+        
         return cell
     }
 }

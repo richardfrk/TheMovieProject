@@ -18,7 +18,7 @@ enum URLMethod: String {
 
 class TMDbAPI {
     
-    class func getGenreMovieList() {
+    class func getGenreMovieList(completionHandler:@escaping ([[String:Any]])->()) {
         
         let myParameters = [
         "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a",
@@ -27,7 +27,13 @@ class TMDbAPI {
         
         NetworkHelper.request(urlMethod: .genreListMovie, networkMethod: .GET, parameters: myParameters) { (result) in
             
-            print(result)
+            switch result {
+            case .success(let data):
+                let json = JSONHelper.init(data: data, apiMethod: .genreList)
+                completionHandler(json.value)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
@@ -46,7 +52,7 @@ class TMDbAPI {
             switch response {
             case .success(let nhData):
                 
-                let json = JSONHelper.init(data: nhData, urlMethod: .searchMovie)
+                let json = JSONHelper.init(data: nhData, apiMethod: .searchMovie)
                 completionHandler(json.value)
             
             case .failure(let error):
