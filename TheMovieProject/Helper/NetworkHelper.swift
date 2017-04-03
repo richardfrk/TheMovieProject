@@ -19,9 +19,9 @@ enum NetworkResponse {
 
 class NetworkHelper {
     
-    class func request(urlMethod: URLMethod, networkMethod: NetworkMethod, parameters: [String:String], completionHandler:@escaping (NetworkResponse) -> ()) {
+    class func request(endpoint: Endpoint, networkMethod: NetworkMethod, parameters: [String:String], completionHandler:@escaping (NetworkResponse) -> ()) {
         
-        let nwURLComponents = URLComponents(url: urlMethod.rawValue, parameters: parameters)
+        let nwURLComponents = URLComponents(url: endpoint.methodPath, parameters: parameters)
         
         guard let nwURL = nwURLComponents.url else {
             print("Problems with nwURLComponents \(nwURLComponents)")

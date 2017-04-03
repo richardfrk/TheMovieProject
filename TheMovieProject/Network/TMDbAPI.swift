@@ -9,35 +9,56 @@
 import Foundation
 import UIKit
 
-enum URLMethod: String {
+enum Endpoint {
     
-    case searchMovie = "https://api.themoviedb.org/3/search/movie"
-    case movieDetail = "https://api.themoviedb.org/3/movie"
-    case genreListMovie = "https://api.themoviedb.org/3/genre/movie/list"
+    case searchMovie
+    case uniqueMovie
+    case genreMovieList
+    case genreMovieById(Int)
+    
+    public var methodPath: String {
+        
+        switch self {
+        
+        case .searchMovie:
+            return "https://api.themoviedb.org/3/search/movie"
+        case .uniqueMovie:
+            return "https://api.themoviedb.org/3/movie"
+        case .genreMovieList:
+            return "https://api.themoviedb.org/3/genre/movie/list"
+        case .genreMovieById(let value):
+            return "https://api.themoviedb.org/3/genre/\(value)/movies"
+
+        }
+    }
 }
 
 class TMDbAPI {
     
-    class func getGenreMovieList(completionHandler:@escaping ([[String:Any]])->()) {
+    typealias TMDBDictionary = [[String:Any]]
+    
+    class func getGenreMovieList(completionHandler:@escaping (TMDBDictionary)->()) {
         
         let myParameters = [
         "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a",
         "language":"en-US",
         ]
         
-        NetworkHelper.request(urlMethod: .genreListMovie, networkMethod: .GET, parameters: myParameters) { (result) in
+        NetworkHelper.request(endpoint: .genreMovieList, networkMethod: .GET, parameters: myParameters) { (result) in
             
             switch result {
-            case .success(let data):
-                let json = JSONHelper.init(data: data, apiMethod: .genreList)
+            case .success(let nhData):
+                
+                let json = JSONHelper.init(data: nhData, endpoint: .genreMovieList)
                 completionHandler(json.value)
+            
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    class func getSearchMovie(title: String, completionHandler:@escaping ([[String:Any]])->()) {
+    class func getSearchMovie(title: String, completionHandler:@escaping (TMDBDictionary)->()) {
         
         let myParameters = [
             "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a",
@@ -47,16 +68,38 @@ class TMDbAPI {
             "include_adult":"false"
             ]
         
-        NetworkHelper.request(urlMethod: .searchMovie, networkMethod: .GET, parameters: myParameters) { (response) in
+        NetworkHelper.request(endpoint: .searchMovie, networkMethod: .GET, parameters: myParameters) { (response) in
             
             switch response {
             case .success(let nhData):
                 
-                let json = JSONHelper.init(data: nhData, apiMethod: .searchMovie)
+                let json = JSONHelper.init(data: nhData, endpoint: .searchMovie)
                 completionHandler(json.value)
             
             case .failure(let error):
-                
+                print(error)
+            }
+        }
+    }
+    
+    class func getGenreMoviesBy(id: Int, completionHandler:@escaping (TMDBDictionary)->()) {
+        
+        let myParameters = [
+            "api_key":"280e4dd3ac750ddf0bb4ec7d576c215a",
+            "language":"en-US",
+            "sort_by":"created_at.asc",
+            "include_adult":"false"
+        ]
+        
+        NetworkHelper.request(endpoint: .genreMovieById(id) , networkMethod: .GET, parameters: myParameters) { (response) in
+            
+            switch response {
+            case .success(let nhData):
+            
+                let json = JSONHelper.init(data: nhData, endpoint: .genreMovieById(id))
+                completionHandler(json.value)
+            
+            case .failure(let error):
                 print(error)
             }
             

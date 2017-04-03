@@ -24,7 +24,7 @@ class GenreCollectionViewController: UICollectionViewController {
         }
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
@@ -38,5 +38,12 @@ class GenreCollectionViewController: UICollectionViewController {
         cell.titleGenreLabel.text = (dataSource[indexPath.row]["name"] as? String)?.uppercased()
         
         return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
     }
 }

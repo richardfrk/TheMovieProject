@@ -8,24 +8,19 @@
 
 import Foundation
 
-enum APIMethod: String {
-    case genreList = "genres"
-    case searchMovie = "results"
-}
-
 struct JSONHelper {
     
     var value: [[String:Any]] = [[:]]
 
-    init(data: Data, apiMethod: APIMethod) {
+    init(data: Data, endpoint: Endpoint) {
         
         do {
             
             let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
             
-            switch apiMethod {
+            switch endpoint {
             
-            case .genreList:
+            case .genreMovieList:
                 
                 let dictionary = json["genres"] as! [[String:Any]]
                 self.value = dictionary
@@ -35,12 +30,17 @@ struct JSONHelper {
                 let dictionary = json["results"] as! [[String:Any]]
                 self.value = dictionary
                 
+            case .genreMovieById:
+                
+                let dictionary = json["results"] as! [[String:Any]]
+                self.value = dictionary
+                
             default:
                 break
             }
             
         } catch {
-            print("")
+            print("Failure with JSON Serialization...")
         }
     }
 }
