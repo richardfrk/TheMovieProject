@@ -80,7 +80,7 @@ extension SearchTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        guard let text = searchBar.text, text.characters.count > 1 else {
+        guard let text = searchBar.text, text.count > 1 else {
             print("")
             return
         }
